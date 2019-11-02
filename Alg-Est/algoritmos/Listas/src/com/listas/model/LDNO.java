@@ -5,14 +5,15 @@ import java.util.Scanner;
 import com.listas.ElementoDuplo;
 
 public class LDNO {
-	public ElementoDuplo inicio = null, fim = null, aux = null, novo = null;
+	public ElementoDuplo inicio = null, fim = null,auxAnt =null, aux = null, auxDps=null, novo = null;
 	public boolean sair = false;
 	private Scanner in = new Scanner(System.in);
 	public int opcao, busca;
+	public boolean troca;
 
 	public void run() {
 		do {
-			System.out.println("\nDigite uma opção:\n" + "0 - Sair\n" + "1 - Inserir no inicio\n"
+			System.out.println("\nDigite uma opÃ§Ã£o:\n" + "0 - Sair\n" + "1 - Inserir no inicio\n"
 					+ "2 - Inserir no final\n" + "3 - Buscar\n" + "4 - Excluir\n" + "5 - Esvaziar\n"+ "6 - Ordenar (com outra lista)\n"+ "7 - Ordenar (na mesma lista)\n" + "8 - Listar\n");
 			opcao = in.nextInt();
 			switch (opcao) {
@@ -21,14 +22,14 @@ public class LDNO {
 				break;
 			case 1:
 				novo = new ElementoDuplo();
-				System.out.println("Digite um número:");
+				System.out.println("Digite um nÃºmero:");
 				novo.numero = in.nextInt();
 				if (inicio == null) {
 					// lista vazia
 					inicio = novo;
 					fim = novo;
 				} else {
-					// lista não vazia
+					// lista nÃ£o vazia
 					novo.prox = inicio;
 					inicio.ant = novo;
 					inicio = novo;
@@ -39,28 +40,28 @@ public class LDNO {
 				break;
 			case 3:
 				// buscar
-				System.out.println("Digite um número para procurar:");
+				System.out.println("Digite um nÃºmero para procurar:");
 				busca = in.nextInt();
 				aux = inicio;
 				while (aux != null && aux.numero != busca) {
 					aux = aux.prox;
 				}
 				if (aux == null)
-					System.out.println("não tem");
+					System.out.println("nÃ£o tem");
 				else
 					System.out.println("achei: " + busca);
 
 				break;
 			case 4:
 				// excluir elemento
-				System.out.println("Digite um número para procurar:");
+				System.out.println("Digite um nÃºmero para procurar:");
 				busca = in.nextInt();
 				aux = inicio;
 				while (aux != null && aux.numero != busca) {
 					aux = aux.prox;
 				}
 				if (aux == null)
-					System.out.println("não tem");
+					System.out.println("nÃ£o tem");
 				else {
 					if (aux != inicio)
 						aux.ant.prox = aux.prox;
@@ -94,6 +95,73 @@ public class LDNO {
 					auxLDO = auxLDO.prox;
 				}
 				break;
+			case 7:
+				
+				do 
+					{	
+						//inicializa os ponteiros
+						auxAnt= inicio;
+						aux= auxAnt.prox;
+						auxDps=aux.prox;
+						troca = false;
+						
+						while(auxDps != null)
+						{
+						
+							if(auxAnt == inicio) {
+								if(auxAnt.numero>aux.numero) {
+									//troca
+									auxAnt.prox = auxDps;
+									auxAnt.ant = aux;
+									aux.prox = auxAnt;
+									aux.ant = null;
+									inicio = aux;
+									//ajusta ponteiro
+									auxAnt = inicio;
+									aux = aux.prox;
+								}
+							}
+							
+							if( auxDps != fim){ 
+							   if(aux.numero>auxDps.numero) {
+								  //troca
+								  auxAnt.prox = auxDps; 
+								  aux.prox = auxDps.prox;
+								  aux.ant = auxDps;
+								  auxDps.prox = aux;
+								  auxDps.ant = auxAnt;
+								  //ajustar ponteiros
+								  aux = auxAnt.prox;
+								  auxDps = auxAnt.prox.prox;					  
+							   	  troca = true; 	 
+							   }
+							}
+							else {
+								 if(aux.numero > auxDps.numero) {
+									 // troca
+									 auxAnt.prox = auxDps;
+									 aux.prox = auxDps.prox;
+									 aux.ant = auxDps;
+									 auxDps.prox = aux;
+									 auxDps.ant = auxAnt;
+									 fim = aux;
+									 // ajusta ponteiro
+									 aux = auxAnt.prox;
+									 auxDps = auxDps.prox;
+								 
+								 }
+								
+							}
+						  
+							// faz os ponteiros andar
+							auxDps = auxDps.prox;
+							aux = aux.prox;
+							auxAnt = auxAnt.prox;
+							
+							
+						 }
+					   }while(troca);	
+						
 			case 8:
 				if (inicio == null)
 					System.out.println("Lista vazia");
@@ -119,14 +187,14 @@ public class LDNO {
 	
 	public void inserirFinal() {
 		novo = new ElementoDuplo();
-		System.out.println("Digite um número:");
+		System.out.println("Digite um nï¿½mero:");
 		novo.numero = in.nextInt();
 		if (inicio == null) {
 			// lista vazia
 			inicio = novo;
 			fim = novo;
 		} else {
-			// lista não vazia
+			// lista nï¿½o vazia
 			fim.prox = novo;
 			novo.ant = fim;
 			fim = novo;
@@ -141,7 +209,7 @@ public class LDNO {
 			inicio = novo;
 			fim = novo;
 		} else {
-			// lista não vazia
+			// lista nÃ£o vazia
 			fim.prox = novo;
 			novo.ant = fim;
 			fim = novo;

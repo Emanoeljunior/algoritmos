@@ -6,15 +6,16 @@ import com.listas.ElementoDuplo;
 import com.listas.ElementoSimples;
 
 public class LSNO {
-	public ElementoSimples inicio = null, fim = null, aux = null, novo = null, anterior = null;
+	public ElementoSimples inicio = null, fim = null,auxAnt =null, auxDps= null, aux = null, novo = null, anterior = null;
 	public boolean sair = false;
 	private Scanner in = new Scanner(System.in);
 	public int opcao, busca;
+	public boolean troca;
 
 	public void run() {
 		do {
 			System.out.println("\nLSNO"
-					+ "\nDigite uma opÁ„o:\n" + "0 - Sair\n" + "1 - Inserir no inicio\n"
+					+ "\nDigite uma opcao:\n" + "0 - Sair\n" + "1 - Inserir no inicio\n"
 					+ "2 - Inserir no final\n" + "3 - Buscar\n" + "4 - Excluir\n" + "5 - Esvaziar\n"+ "6 - Ordenar (com outra lista)\n"+ "7 - Ordenar (na mesma lista)\n" + "8 - Listar\n");
 			opcao = in.nextInt();
 			switch (opcao) {
@@ -23,49 +24,49 @@ public class LSNO {
 				break;
 			case 1:
 				novo = new ElementoSimples();
-				System.out.println("Digite um n˙mero:");
+				System.out.println("Digite um n√∫mero:");
 				novo.numero = in.nextInt();
 				if (inicio == null) {
 					// lista vazia
 					inicio = novo;
 					fim = novo;
 				} else {
-					// lista n„o vazia
+					// lista n√£o vazia
 					novo.prox = inicio;
 					inicio = novo;
 				}
 				break;
 			case 2:
 				novo = new ElementoSimples();
-				System.out.println("Digite um n˙mero:");
+				System.out.println("Digite um n√∫mero:");
 				novo.numero = in.nextInt();
 				if (inicio == null) {
 					// lista vazia
 					inicio = novo;
 					fim = novo;
 				} else {
-					// lista n„o vazia
+					// lista n√£o vazia
 					fim.prox = novo;
 					fim = novo;
 				}
 				break;
 			case 3:
 				// buscar
-				System.out.println("Digite um n˙mero para procurar:");
+				System.out.println("Digite um n√∫mero para procurar:");
 				busca = in.nextInt();
 				aux = inicio;
 				while (aux != null && aux.numero != busca) {
 					aux = aux.prox;
 				}
 				if (aux == null)
-					System.out.println("n„o tem");
+					System.out.println("n√£o tem");
 				else
 					System.out.println("achei: " + busca);
 
 				break;
 			case 4:
 				// excluir elemento
-				System.out.println("Digite um n˙mero para procurar:");
+				System.out.println("Digite um n√∫mero para procurar:");
 				busca = in.nextInt();
 				aux = inicio;
 				if(aux != null && aux.numero == busca) {
@@ -85,7 +86,7 @@ public class LSNO {
 				}
 				
 				if (aux == null)
-					System.out.println("n„o tem");
+					System.out.println("n√£o tem");
 				else {
 					if(aux == fim) {
 						fim = anterior;
@@ -116,6 +117,69 @@ public class LSNO {
 					auxLDO = auxLDO.prox;
 				}
 
+			case 7:
+				
+		do 
+			{	
+				//inicializa os ponteiros
+				auxAnt= inicio;
+				aux= auxAnt.prox;
+				auxDps=aux.prox;
+				troca = false;
+				
+				while(auxDps != null)
+				{
+				
+					if(auxAnt == inicio) {
+						if(auxAnt.numero>aux.numero) {
+							//troca
+							auxAnt.prox = auxDps;
+							aux.prox = auxAnt;
+							inicio = aux;
+							//ajusta ponteiro
+							auxAnt = inicio;
+							aux = aux.prox;
+						}
+					}
+					
+					if( auxDps != fim){ 
+					   if(aux.numero>auxDps.numero) {
+						  //troca
+						  auxAnt.prox = auxDps; 
+						  aux.prox = auxDps.prox;
+						  auxDps.prox = aux;
+						  //ajustar ponteiros
+						  aux = auxAnt.prox;
+						  auxDps = auxAnt.prox.prox;					  
+					   	  troca = true; 	 
+					   }
+					}
+					else {
+						 if(aux.numero > auxDps.numero) {
+							 // troca
+							 auxAnt.prox = auxDps;
+							 aux.prox = auxDps.prox;
+							 auxDps.prox = aux;
+							 fim = aux;
+							 // ajusta ponteiro
+							 aux = auxAnt.prox;
+							 auxDps = auxDps.prox;
+						 
+						 }
+						
+					}
+				  
+					// faz os ponteiros andar
+					auxDps = auxDps.prox;
+					aux = aux.prox;
+					auxAnt = auxAnt.prox;
+					
+					
+				 }
+			   }while(troca);	
+				
+			
+
 			case 8:
 				if (inicio == null)
 					System.out.println("Lista vazia");
@@ -143,7 +207,7 @@ public class LSNO {
 			inicio = novo;
 			fim = novo;
 		} else {
-			// lista n„o vazia
+			// lista n√£o vazia
 			fim.prox = novo;
 			fim = novo;
 		}

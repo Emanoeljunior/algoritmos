@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Alg-Est/algoritmos/Listas/src"/>
+	<classpathentry kind="src" path="Alg-Est/algoritmos/Pilha/src"/>
+	<classpathentry kind="src" path="Alg-Est/Listas/src"/>
+	<classpathentry kind="src" path="Alg-Est/Pilha/src"/>
+	<classpathentry kind="output" path="Alg-Est/Listas/bin"/>
+</classpath>
