@@ -13,7 +13,7 @@ public class LSO {
 
 	public void run() {
 		do {
-			System.out.println("\nDigite uma opção:\n" + "0 - Sair\n" + "1 - Inserir no inicio\n"
+			System.out.println("\nDigite uma opï¿½ï¿½o:\n" + "0 - Sair\n" + "1 - Inserir no inicio\n"
 					+ "2 - Inserir no final\n" + "3 - Buscar\n" + "4 - Excluir\n" + "5 - Esvaziar\n"+ "6 - Ordenar (com outra lista)\n"+ "7 - Ordenar (na mesma lista)\n" + "8 - Listar\n");
 			opcao = in.nextInt();
 			switch (opcao) {
@@ -22,42 +22,42 @@ public class LSO {
 				break;
 			case 1:
 				novo = new ElementoSimples();
-				System.out.println("Digite um número:");
+				System.out.println("Digite um nï¿½mero:");
 				novo.numero = in.nextInt();
 				if (inicio == null) {
 					// lista vazia
 					inicio = novo;
 					fim = novo;
 				} else {
-					// lista não vazia
+					// lista nï¿½o vazia
 					novo.prox = inicio;
 					inicio = novo;
 				}
 				break;
 			case 2:
 				novo = new ElementoSimples();
-				System.out.println("Digite um número:");
+				System.out.println("Digite um nï¿½mero:");
 				novo.numero = in.nextInt();
 				if (inicio == null) {
 					// lista vazia
 					inicio = novo;
 					fim = novo;
 				} else {
-					// lista não vazia
+					// lista nï¿½o vazia
 					fim.prox = novo;
 					fim = novo;
 				}
 				break;
 			case 3:
 				// buscar
-				System.out.println("Digite um número para procurar:");
+				System.out.println("Digite um nï¿½mero para procurar:");
 				busca = in.nextInt();
 				aux = inicio;
 				while (aux != null && aux.numero != busca) {
 					aux = aux.prox;
 				}
 				if (aux == null)
-					System.out.println("não tem");
+					System.out.println("nï¿½o tem");
 				else
 					System.out.println("achei: " + busca);
 
@@ -72,6 +72,7 @@ public class LSO {
 		novo = new ElementoSimples();
 		novo.numero = numero;
 		aux = inicio;
+		
 		if (inicio == null) {
 			inicio = novo;
 			fim = novo;
@@ -85,12 +86,12 @@ public class LSO {
 				fim = novo;
 			} else {
 				// #TODO busca
-				while (aux.numero < novo.numero) {
+				while (aux.prox.numero < novo.numero) {
 					aux = aux.prox;
 				}
-				// troca
-				novo.prox = aux;
-				aux.prox = novo;
+				 //troca
+				 novo.prox = aux.prox;
+				 aux.prox = novo;
 			}
 		}
 	}

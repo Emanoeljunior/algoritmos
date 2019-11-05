@@ -102,7 +102,7 @@ public class LSNO {
 				fim = null;
 				break;
 			case 6:
-				LDO listaOrdenada = new LDO();
+				LSO listaOrdenada = new LSO();
 				aux= inicio;
 				while(aux != null) {
 					listaOrdenada.inserir(aux.numero);
@@ -110,11 +110,11 @@ public class LSNO {
 				}
 				inicio = null;
 				
-				ElementoDuplo auxLDO = new ElementoDuplo();
-				auxLDO = listaOrdenada.inicio;
-				while(auxLDO != null) {
-					inserirFinal(auxLDO.numero);
-					auxLDO = auxLDO.prox;
+				ElementoSimples auxLSO = new ElementoSimples();
+				auxLSO = listaOrdenada.inicio;
+				while(auxLSO != null) {
+					inserirFinal(auxLSO.numero);
+					auxLSO = auxLSO.prox;
 				}
 
 			case 7:

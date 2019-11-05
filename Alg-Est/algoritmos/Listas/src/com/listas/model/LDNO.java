@@ -161,7 +161,7 @@ public class LDNO {
 							
 						 }
 					   }while(troca);	
-						
+						break;
 			case 8:
 				if (inicio == null)
 					System.out.println("Lista vazia");
